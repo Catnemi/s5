@@ -30,22 +30,71 @@ return 0;
 }
 
 // EXERCICE 2 
-E e
 #include<iostream>
-#include<string>
+#include<iomanip>
 
+ using namespace std; 
 const float SOLDE_INITIALE = 1000.0;
-bool deposer(float &solde, float monstant);
-	
-bool retirer(float &solde, float monstant);
+ 
+        bool deposer(float &solde, float montant){ 
+            if(montant <= 0){
+                cout << "False" << endl;
+                return false;
+            }
+            solde += montant;
+            return true;
+        }
+        bool retirer(float &solde, float montant){
+            if(montant <= 0 || montant > solde){ 
+                cout << "False" << endl;
+                return false;
+            }
+            solde -= montant;
+            return true;
+            }
+        void afficherSolde(float solde){
+            cout << fixed << setprecision(2) << solde << endl;
+        }
+        void afficherMenu(){
+            cout << "affichage du menu" << endl;
+            cout << "1 Deposer" << endl;
+            cout << "2 Retirer" << endl;
+            cout << "3 Afficher le solde" << endl;
+            cout << "4 Quitter" << endl;
+            cout << "Votre choix : ";
+        }
+ int main(){
+float solde = SOLDE_INITIALE;
+int choix;
+float montant;    
+     do{
+      afficherMenu();
+      cin >> choix;
+         switch(choix){
+           case 1:
+             cout << "Montant a deposer : " << endl;
+             cin >> montant;
+             deposer(solde , montant);
+           break;
 
-void afficherMenu(float solde);
+           case 2:
+              cout << "Montant a retirer : " << endl;
+              cin >> montant;
+              retirer(solde , montant);
+            break;
 
-void afficherMenu();
+            case 3:
+              afficherSolde(solde);
+            break;
 
-int main(){
-	float solde = SOLDE_INITIALE;
-	int choix;
-	float montant;
-	return 0;
-}
+            case 4:
+              cout << "Quitter" << endl;
+            break;
+                    
+             default:
+              cout << "Choix invalid" << endl;
+            }
+            }while(choix != 4);
+
+            return 0;
+        }
