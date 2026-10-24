@@ -98,3 +98,70 @@ float montant;
 
             return 0;
         }
+ #include <iostream>
+ #include <cstdlib>
+ #include <ctime>
+    
+    using namespace std;
+ const int NB_MIN = 1;
+ const int NB_MAX = 100;
+ const int MAX_TENTATIVES = 7;
+        int genererNombreSecret(){
+            return rand() % (NB_MAX - NB_MIN + 1) + NB_MIN; 
+        }
+        bool faireDeviner(int nbrSecret, int &tentatives){
+            tentatives = 0;
+            int proposition;
+            nbrSecret = genererNombreSecret();          
+        
+            while(tentatives < MAX_TENTATIVES){{
+                cout << "Saisir la proposition" << endl;
+                cin >> proposition;    
+                tentatives ++;
+                if(nbrSecret > proposition){
+                cout << "Trop petit" << endl;
+                }
+                else if(nbrSecret < proposition){
+                cout << "Trop GRAND" << endl;
+                }
+                else if(nbrSecret == proposition){
+                cout << "Gagne" << endl;
+                return true;
+                }
+            
+            }}
+        }
+        void afficherResultat(bool reussi, int tentatives, int nbrSecret){
+            reussi = faireDeviner(nbrSecret,tentatives);
+            if(tentatives < nbrSecret || reussi == true){
+            cout << "Non reussi" << endl;
+            }
+            if(tentatives == nbrSecret){
+            cout << nbrSecret << endl;
+            }
+        }
+        void jouePartie(){
+            int proposition = 7;
+            int nbrSecret = 10;
+            char x;
+            do{
+            cout << "Rejouer?" << endl;
+            if(x == '0'){
+            faireDeviner(nbrSecret,proposition);
+        }
+        else{
+            cout << "Faux" << endl;
+        }
+        }while(nbrSecret == 7);
+        }
+        int main(){
+            srand(time(0));
+            bool reussi;
+            int tentatives = MAX_TENTATIVES;
+            int nbrSecret = 7;           
+            genererNombreSecret();
+            faireDeviner(nbrSecret,tentatives);
+            afficherResultat(reussi,tentatives,nbrSecret);
+            jouePartie();
+            return 0;
+        }
