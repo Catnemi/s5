@@ -1,6 +1,5 @@
 # Linux — Référence : système de fichiers et commandes
 
-> Fiche de révision du cours « Systèmes d'exploitation Unix » (EMSI). Commandes à exécuter dans un terminal Linux, par exemple Bash.
 
 ## 1. Arborescence Linux
 
